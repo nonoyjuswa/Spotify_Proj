@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class SearchPage extends StatelessWidget {
+  const SearchPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Colors.black,
         body: SafeArea(
           child: Column(
@@ -23,6 +17,33 @@ class MyApp extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        // Header: profile + camera
+                        Container(
+                          padding: EdgeInsets.only(top: 20, bottom: 16),
+                          child: Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 20,
+                                backgroundColor: Color(0xFFB39DDB),
+                                child: Text(
+                                  'N',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                             
+                              Icon(
+                                Icons.photo_camera_outlined,
+                                size: 30,
+                                color: Colors.white,
+                              ),
+                            ],
+                          ),
+                        ),
+
                         // Title
                         Container(
                           padding: EdgeInsets.only(top: 20, bottom: 16),
@@ -466,23 +487,6 @@ class MyApp extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Color(0xFF181818),
-          currentIndex: 1,
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.grey,
-          type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.library_music),
-              label: "Library",
-            ),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-          ],
-        ),
-      ),
     );
   }
 }

@@ -1,19 +1,35 @@
 import 'package:flutter/material.dart';
 import 'addAccount.dart';
 import 'premium.dart';
+import 'search.dart';
+import 'pofile.dart';
 
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: SpotifyHome(),
+    home: MainShell(),
   ));
 }
 
-class SpotifyHome extends StatelessWidget {
-  const SpotifyHome({super.key});
+class MainShell extends StatefulWidget {
+  const MainShell({super.key});
+
+  @override
+  State<MainShell> createState() => _MainShellState();
+}
+
+class _MainShellState extends State<MainShell> {
+  int currentIndex = 0; // 0 = Home (default)
 
   @override
   Widget build(BuildContext context) {
+    final pages = [
+      SpotifyHome(),
+      SearchPage(),
+      Center(child: Text('Library', style: TextStyle(color: Colors.white))),
+      Center(child: Text('Create', style: TextStyle(color: Colors.white))),
+    ];
+
     return Scaffold(
       backgroundColor: Color(0xFF121212),
 
@@ -22,20 +38,39 @@ class SpotifyHome extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            DrawerHeader(
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    radius: 28,
-                    backgroundColor: Colors.green,
-                    child: Icon(Icons.person, color: Colors.white),
-                  ),
-                  SizedBox(width: 12),
-                  Text(
-                    'Nonoy',
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                ],
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context); // close drawer first
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => ProfilePage()),
+                );
+              },
+              child: DrawerHeader(
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 28,
+                      backgroundColor: Colors.green,
+                      child: Icon(Icons.person, color: Colors.white),
+                    ),
+                    SizedBox(width: 12),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Nonoy',
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                        Text(
+                          'View profile',
+                          style: TextStyle(color: Colors.grey, fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
             ListTile(
@@ -64,7 +99,36 @@ class SpotifyHome extends StatelessWidget {
         ),
       ),
 
-      body: SafeArea(
+      body: pages[currentIndex],
+
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xFF181818),
+        currentIndex: currentIndex, // highlights the active tab
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey,
+        type: BottomNavigationBarType.fixed,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
+          BottomNavigationBarItem(icon: Icon(Icons.library_music), label: "Library"),
+          BottomNavigationBarItem(icon: Icon(Icons.add), label: "Create"),
+        ],
+      ),
+    );
+  }
+}
+
+class SpotifyHome extends StatelessWidget {
+  const SpotifyHome({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.all(12),
@@ -74,14 +138,12 @@ class SpotifyHome extends StatelessWidget {
                 // TOP PROFILE AND CATEGORIES
                 Row(
                   children: [
-                    Builder(
-                      builder: (context) => GestureDetector(
-                        onTap: () => Scaffold.of(context).openDrawer(),
-                        child: CircleAvatar(
-                          radius: 20,
-                          backgroundColor: Colors.green,
-                          child: Icon(Icons.person, color: Colors.white),
-                        ),
+                    GestureDetector(
+                      onTap: () => Scaffold.of(context).openDrawer(),
+                      child: CircleAvatar(
+                        radius: 20,
+                        backgroundColor: Colors.green,
+                        child: Icon(Icons.person, color: Colors.white),
                       ),
                     ),
                     SizedBox(width: 10),
@@ -169,33 +231,6 @@ class SpotifyHome extends StatelessWidget {
             ),
           ),
         ),
-      ),
-
-      // BOTTOM NAVIGATION
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xFF181818),
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.grey,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: "Search",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.library_music),
-            label: "Library",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: "Profile",
-          ),
-        ],
-      ),
     );
   }
 

@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Colors.black,
         body: SafeArea(
           child: Column(
@@ -26,10 +20,13 @@ class MyApp extends StatelessWidget {
                         // Back button
                         Container(
                           padding: EdgeInsets.only(top: 16, bottom: 8),
-                          child: Icon(
-                            Icons.arrow_back_ios_new,
-                            size: 22,
-                            color: Colors.white,
+                          child: GestureDetector(
+                            onTap: () => Navigator.pop(context),
+                            child: Icon(
+                              Icons.arrow_back_ios_new,
+                              size: 22,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
 
@@ -325,23 +322,6 @@ class MyApp extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Color(0xFF181818),
-          currentIndex: 3,
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.grey,
-          type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.library_music),
-              label: "Library",
-            ),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-          ],
-        ),
-      ),
     );
   }
 }
