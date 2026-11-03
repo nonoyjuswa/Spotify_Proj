@@ -1,5 +1,6 @@
-
 import 'package:flutter/material.dart';
+import 'addAccount.dart';
+import 'premium.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -16,6 +17,53 @@ class SpotifyHome extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFF121212),
 
+      drawer: Drawer(
+        backgroundColor: Color(0xFF181818),
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 28,
+                    backgroundColor: Colors.green,
+                    child: Icon(Icons.person, color: Colors.white),
+                  ),
+                  SizedBox(width: 12),
+                  Text(
+                    'Nonoy',
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                ],
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.person_add, color: Colors.white),
+              title: Text('Add account', style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.pop(context); // close drawer first
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => AddAccountPage()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.workspace_premium, color: Colors.white),
+              title: Text('Premium', style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => PremiumPage()),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -26,10 +74,15 @@ class SpotifyHome extends StatelessWidget {
                 // TOP PROFILE AND CATEGORIES
                 Row(
                   children: [
-                    CircleAvatar(
-                      radius: 20,
-                      backgroundColor: Colors.green,
-                      child: Icon(Icons.person, color: Colors.white),
+                    Builder(
+                      builder: (context) => GestureDetector(
+                        onTap: () => Scaffold.of(context).openDrawer(),
+                        child: CircleAvatar(
+                          radius: 20,
+                          backgroundColor: Colors.green,
+                          child: Icon(Icons.person, color: Colors.white),
+                        ),
+                      ),
                     ),
                     SizedBox(width: 10),
                     category("All"),
