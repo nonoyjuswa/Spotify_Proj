@@ -226,7 +226,6 @@ class SpotifyHome extends StatelessWidget {
                 ),
 
                 SizedBox(height: 20),
-
               ],
             ),
           ),
@@ -236,20 +235,16 @@ class SpotifyHome extends StatelessWidget {
 
   // CATEGORY BUTTON
   Widget category(String name) {
-    return Expanded(
-      child: Container(
-        margin: EdgeInsets.only(right: 5),
-        padding: EdgeInsets.symmetric(vertical: 10),
-        decoration: BoxDecoration(
-          color: Color(0xFF282828),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Center(
-          child: Text(
-            name,
-            style: TextStyle(color: Colors.white, fontSize: 11),
-          ),
-        ),
+    return Container(
+      margin: EdgeInsets.only(right: 8),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      decoration: BoxDecoration(
+        color: Color(0xFF282828),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Text(
+        name,
+        style: TextStyle(color: Colors.white, fontSize: 12),
       ),
     );
   }

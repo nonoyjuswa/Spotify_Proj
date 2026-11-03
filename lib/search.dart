@@ -21,6 +21,7 @@ class SearchPage extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.only(top: 20, bottom: 16),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               CircleAvatar(
                                 radius: 20,
