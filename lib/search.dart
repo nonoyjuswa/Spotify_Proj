@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'profile_avatar.dart';
+import 'constants.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
@@ -6,44 +8,32 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Colors.black,
+        color: Color(0xFF121212),
         child: SafeArea(
           child: Column(
             children: [
               Expanded(
                 child: SingleChildScrollView(
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    padding: EdgeInsets.symmetric(horizontal: kPagePadding),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // Header: profile + camera
                         Container(
-                          padding: EdgeInsets.only(top: 20, bottom: 16),
+                          padding: EdgeInsets.only(bottom: 20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              GestureDetector(
-                                onTap: () => Scaffold.of(context).openDrawer(),
-                                child: CircleAvatar(
-                                  radius: 20,
-                                  backgroundColor: Colors.green,
-                                  child: Icon(Icons.person, color: Colors.white),
-                                ),
-                              ),
-                             
-                              Icon(
-                                Icons.photo_camera_outlined,
-                                size: 30,
-                                color: Colors.white,
-                              ),
+                              ProfileAvatar(),
+                              Icon(Icons.photo_camera_outlined, size: 30, color: Colors.white),
                             ],
                           ),
                         ),
 
                         // Title
                         Container(
-                          padding: EdgeInsets.only(top: 20, bottom: 16),
+                          padding: EdgeInsets.only(bottom: 16),
                           child: Text(
                             'Search',
                             style: TextStyle(

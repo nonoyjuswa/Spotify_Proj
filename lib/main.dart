@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'addAccount.dart';
-import 'premium.dart';
 import 'search.dart';
-import 'pofile.dart';
+import 'app_drawer.dart';
+import 'profile_avatar.dart';
+import 'constants.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -33,71 +33,7 @@ class _MainShellState extends State<MainShell> {
     return Scaffold(
       backgroundColor: Color(0xFF121212),
 
-      drawer: Drawer(
-        backgroundColor: Color(0xFF181818),
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.pop(context); // close drawer first
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => ProfilePage()),
-                );
-              },
-              child: DrawerHeader(
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 28,
-                      backgroundColor: Colors.green,
-                      child: Icon(Icons.person, color: Colors.white),
-                    ),
-                    SizedBox(width: 12),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Nonoy',
-                          style: TextStyle(color: Colors.white, fontSize: 20),
-                        ),
-                        Text(
-                          'View profile',
-                          style: TextStyle(color: Colors.grey, fontSize: 12),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.person_add, color: Colors.white),
-              title: Text('Add account', style: TextStyle(color: Colors.white)),
-              onTap: () {
-                Navigator.pop(context); // close drawer first
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => AddAccountPage()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.workspace_premium, color: Colors.white),
-              title: Text('Premium', style: TextStyle(color: Colors.white)),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => PremiumPage()),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: AppDrawer(),
 
       body: pages[currentIndex],
 
@@ -131,21 +67,14 @@ class SpotifyHome extends StatelessWidget {
     return SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(12),
+            padding: EdgeInsets.all(kPagePadding),
             child: Column(
               children: [
 
                 // TOP PROFILE AND CATEGORIES
                 Row(
                   children: [
-                    GestureDetector(
-                      onTap: () => Scaffold.of(context).openDrawer(),
-                      child: CircleAvatar(
-                        radius: 20,
-                        backgroundColor: Colors.green,
-                        child: Icon(Icons.person, color: Colors.white),
-                      ),
-                    ),
+                    ProfileAvatar(),
                     SizedBox(width: 10),
                     category("All"),
                     category("Music"),
