@@ -1,14 +1,4 @@
-
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(
-    MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: PlayingScreen(),
-    ),
-  );
-}
 
 class PlayingScreen extends StatefulWidget {
   const PlayingScreen({super.key});
@@ -28,8 +18,13 @@ class _PlayingScreenState extends State<PlayingScreen> {
 
       appBar: AppBar(
         backgroundColor: Color(0xFF121212),
-        leading: Icon(Icons.keyboard_arrow_down,
-            color: Colors.white),
+        leading: GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child:Icon(
+            Icons.keyboard_arrow_down,
+            color: Colors.white
+          ),
+        ),
         title: Column(
           children: [
             Text("PLAYING FROM PLAYLIST",
@@ -58,11 +53,11 @@ class _PlayingScreenState extends State<PlayingScreen> {
 
               // ALBUM IMAGE
               Image.asset(
-  'images/joshua.jpg',
-  height: 250,
-  width: 250,
-  fit: BoxFit.cover,
-),
+                'images/joshua.jpg',
+                height: 250,
+                width: 250,
+                fit: BoxFit.cover,
+              ),
 
               SizedBox(height: 25),
 

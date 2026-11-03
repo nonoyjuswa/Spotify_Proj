@@ -3,6 +3,7 @@ import 'search.dart';
 import 'app_drawer.dart';
 import 'profile_avatar.dart';
 import 'constants.dart';
+import 'mini_player.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -37,22 +38,28 @@ class _MainShellState extends State<MainShell> {
 
       body: pages[currentIndex],
 
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xFF181818),
-        currentIndex: currentIndex, // highlights the active tab
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.grey,
-        type: BottomNavigationBarType.fixed,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
-          BottomNavigationBarItem(icon: Icon(Icons.library_music), label: "Library"),
-          BottomNavigationBarItem(icon: Icon(Icons.add), label: "Create"),
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          MiniPlayer(),
+          BottomNavigationBar(
+            backgroundColor: Color(0xFF181818),
+            currentIndex: currentIndex,
+            selectedItemColor: Colors.white,
+            unselectedItemColor: Colors.grey,
+            type: BottomNavigationBarType.fixed,
+            onTap: (index) {
+              setState(() {
+                currentIndex = index;
+              });
+            },
+            items: [
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+              BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
+              BottomNavigationBarItem(icon: Icon(Icons.library_music), label: "Library"),
+              BottomNavigationBarItem(icon: Icon(Icons.add), label: "Create"),
+            ],
+          ),
         ],
       ),
     );

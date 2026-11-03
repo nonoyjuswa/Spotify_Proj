@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'addAccount.dart';
+import 'add_account.dart';
 import 'premium.dart';
-import 'pofile.dart';
+import 'profile.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
