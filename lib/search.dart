@@ -5,9 +5,9 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.black,
-        body: SafeArea(
+    return Container(
+        color: Colors.black,
+        child: SafeArea(
           child: Column(
             children: [
               Expanded(
@@ -23,16 +23,12 @@ class SearchPage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Color(0xFFB39DDB),
-                                child: Text(
-                                  'N',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                              GestureDetector(
+                                onTap: () => Scaffold.of(context).openDrawer(),
+                                child: CircleAvatar(
+                                  radius: 20,
+                                  backgroundColor: Colors.green,
+                                  child: Icon(Icons.person, color: Colors.white),
                                 ),
                               ),
                              
