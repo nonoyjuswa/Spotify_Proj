@@ -149,8 +149,13 @@ class _PlayingScreenState extends State<PlayingScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Icon(Icons.devices, color: Colors.grey),
-                  Icon(Icons.queue_music, color: Colors.grey),
-                  Icon(Icons.share, color: Colors.grey),
+                  Row(
+                    children: [
+                      Icon(Icons.share, color: Colors.grey),
+                      SizedBox(width: 20),
+                      Icon(Icons.queue_music, color: Colors.grey),
+                    ],
+                  ),
                 ],
               ),
 

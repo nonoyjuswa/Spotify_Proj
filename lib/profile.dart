@@ -213,14 +213,21 @@ class ProfilePage extends StatelessWidget {
                         ),
 
                         // See all playlists
-                        Container(
-                          padding: EdgeInsets.only(bottom: 24),
-                          child: Text(
-                            'See all playlists',
-                            style: TextStyle(
-                              color: Colors.grey.shade400,
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
+                        Center(
+                          child: Container(
+                            margin: EdgeInsets.only(bottom: 24),
+                            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(color: Colors.grey.shade600),
+                            ),
+                            child: Text(
+                              'See all playlists',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                         ),
