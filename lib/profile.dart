@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'shared/bottom_bar.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -7,9 +8,26 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.black,
+        bottomNavigationBar: BottomBar(),
         body: SafeArea(
           child: Column(
             children: [
+               // STICKY BACK BUTTON
+              Padding(
+                padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: GestureDetector(
+                    onTap: () => Navigator.pop(context),
+                    child: Icon(
+                      Icons.arrow_back_ios_new,
+                      size: 22,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+
               Expanded(
                 child: SingleChildScrollView(
                   child: Container(
@@ -17,19 +35,6 @@ class ProfilePage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Back button
-                        Container(
-                          padding: EdgeInsets.only(top: 16, bottom: 8),
-                          child: GestureDetector(
-                            onTap: () => Navigator.pop(context),
-                            child: Icon(
-                              Icons.arrow_back_ios_new,
-                              size: 22,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-
                         // Avatar
                         Container(
                           width: double.infinity,

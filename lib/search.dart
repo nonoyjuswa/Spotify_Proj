@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'profile_avatar.dart';
-import 'constants.dart';
+import 'shared/profile_avatar.dart';
+import 'shared/constants.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
@@ -41,76 +41,82 @@ class SearchPage extends StatelessWidget {
     return Container(
       color: const Color(0xFF121212),
       child: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.only(bottom: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Header: profile + title + camera
-              const Padding(
-                padding: EdgeInsets.fromLTRB(kPagePadding, 20, kPagePadding, 16),
-                child: Row(
+        child: Column(
+          children: [
+            // STICKY HEADER
+            const Padding(
+              padding: EdgeInsets.fromLTRB(kPagePadding, 20, kPagePadding, 16),
+              child: Row(
+                children: [
+                  ProfileAvatar(),
+                  SizedBox(width: 16),
+                  Expanded(
+                    child: Text(
+                      'Search',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+                  Icon(Icons.photo_camera_outlined, size: 30, color: Colors.white),
+                ],
+              ),
+            ),
+
+            // SCROLLING CONTENT
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ProfileAvatar(),
-                    SizedBox(width: 16),
-                    Expanded(
-                      child: Text(
-                        'Search',
-                        style: TextStyle(
+                    // Search bar
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: kPagePadding),
+                      child: Container(
+                        height: 52,
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        decoration: BoxDecoration(
                           color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.w800,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: const Row(
+                          children: [
+                            Icon(Icons.search, size: 28, color: Colors.black),
+                            SizedBox(width: 12),
+                            Text(
+                              'What do you want to listen to?',
+                              style: TextStyle(
+                                color: Colors.black54,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                    Icon(Icons.photo_camera_outlined,
-                        size: 30, color: Colors.white),
+
+                    const SizedBox(height: 24),
+
+                    _CategoryGrid(items: _topCategories),
+
+                    const _SectionTitle('Playlists you can watch'),
+                    _HorizontalCards(items: _playlists),
+
+                    const _SectionTitle('Explore episodes for you'),
+                    _HorizontalCards(items: _episodes),
+
+                    const SizedBox(height: 20),
+
+                    _CategoryGrid(items: _moreCategories),
                   ],
                 ),
               ),
-
-              // Search bar
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: kPagePadding),
-                child: Container(
-                  height: 52,
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: const Row(
-                    children: [
-                      Icon(Icons.search, size: 28, color: Colors.black),
-                      SizedBox(width: 12),
-                      Text(
-                        'What do you want to listen to?',
-                        style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 24),
-
-              _CategoryGrid(items: _topCategories),
-
-              const _SectionTitle('Playlists you can watch'),
-              _HorizontalCards(items: _playlists),
-
-              const _SectionTitle('Explore episodes for you'),
-              _HorizontalCards(items: _episodes),
-
-              const SizedBox(height: 20),
-
-              _CategoryGrid(items: _moreCategories),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

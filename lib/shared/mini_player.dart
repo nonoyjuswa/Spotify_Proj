@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'playing_screen.dart';
+import '../playing_screen.dart';
 
 class MiniPlayer extends StatefulWidget {
   const MiniPlayer({super.key});
