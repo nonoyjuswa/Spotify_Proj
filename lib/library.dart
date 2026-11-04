@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(const MyApp());
-}
+import 'shared/profile_avatar.dart';
+import 'shared/constants.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -29,11 +27,46 @@ class _LibraryPageState extends State<LibraryPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF121212),
-      body: SafeArea(
+    return Container(
+      color: const Color(0xFF121212),
+      child: SafeArea(
         child: Column(
           children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(kPagePadding, 16, kPagePadding, 12),
+              child: Row(
+                children: [
+                  ProfileAvatar(),
+                  SizedBox(width: 16),
+                  const Text(
+                    'Your Library',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.search,
+                      color: Colors.white,
+                      size: 27,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.add,
+                      color: Colors.white,
+                      size: 28,
+                    ),
+                  ),
+                ],
+              ) 
+            ),
+
             Expanded(
               child: SingleChildScrollView(
                 child: Container(
@@ -41,41 +74,6 @@ class _LibraryPageState extends State<LibraryPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-
-                      // Header
-                      Container(
-                        padding: const EdgeInsets.only(top: 15, bottom: 15),
-                        child: Row(
-                          children: [
-                            const Text(
-                              'Your Library',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w800,
-                              ),
-                            ),
-                            const Spacer(),
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.search,
-                                color: Colors.white,
-                                size: 27,
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.add,
-                                color: Colors.white,
-                                size: 28,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-
                       // Filter buttons
                       Row(
                         children: [
@@ -587,139 +585,6 @@ class _LibraryPageState extends State<LibraryPage> {
           ],
         ),
       ),
-
-      // Bottom Navigation
-      
-      // Bottom Music Player and Navigation
-      bottomNavigationBar: Container(
-        color: const Color(0xFF121212),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-
-            // Mini Music Player
-            Container(
-              margin: const EdgeInsets.symmetric(
-                horizontal: 10,
-                vertical: 5,
-              ),
-              padding: const EdgeInsets.all(9),
-              decoration: BoxDecoration(
-                color: const Color(0xFF806F27),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Row(
-                children: [
-
-                  // Album Cover
-                  Container(
-                    width: 47,
-                    height: 47,
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: const Icon(
-                      Icons.music_note,
-                      color: Colors.white,
-                      size: 28,
-                    ),
-                  ),
-
-                  const SizedBox(width: 10),
-
-                  // Song Details
-                  const Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'KYRIE',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-
-                        SizedBox(height: 4),
-
-                        Text(
-                          '+ KTDF Choir',
-                          style: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  const Icon(
-                    Icons.devices_outlined,
-                    color: Colors.white,
-                    size: 26,
-                  ),
-
-                  const SizedBox(width: 18),
-
-                  const Icon(
-                    Icons.add_circle_outline,
-                    color: Colors.white,
-                    size: 27,
-                  ),
-
-                  const SizedBox(width: 18),
-
-                  const Icon(
-                    Icons.play_arrow,
-                    color: Colors.white,
-                    size: 30,
-                  ),
-                ],
-              ),
-            ),
-
-            // Bottom Navigation
-            BottomNavigationBar(
-              backgroundColor: const Color(0xFF121212),
-              currentIndex: 2,
-              selectedItemColor: Colors.white,
-              unselectedItemColor: Colors.grey,
-              type: BottomNavigationBarType.fixed,
-              selectedFontSize: 12,
-              unselectedFontSize: 12,
-              items: const [
-
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home_outlined),
-                  label: 'Home',
-                ),
-
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.search),
-                  label: 'Search',
-                ),
-
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.library_music),
-                  label: 'Your Library',
-                ),
-
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.circle),
-                  label: 'Premium',
-                ),
-
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.add),
-                  label: 'Create',
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-          );
+    );
   }
 }

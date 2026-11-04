@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(const MyApp());
-}
+import 'shared/bottom_bar.dart';
+import 'shared/profile_avatar.dart';
+import 'shared/constants.dart';
+import 'shared/app_drawer.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -117,6 +117,8 @@ class _SpotifyMessagesPageState extends State<SpotifyMessagesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF121212),
+      bottomNavigationBar: BottomBar(),
+      drawer: AppDrawer(),
       body: SafeArea(
         child: Column(
           children: [
@@ -487,116 +489,6 @@ class _SpotifyMessagesPageState extends State<SpotifyMessagesPage> {
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
-
-      // Mini Player & Bottom Navigation
-      bottomNavigationBar: Container(
-        color: const Color(0xFF121212),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // Mini Music Player
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              padding: const EdgeInsets.all(9),
-              decoration: BoxDecoration(
-                color: const Color(0xFF806F27),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    width: 44,
-                    height: 44,
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: const Icon(
-                      Icons.music_note,
-                      color: Colors.white,
-                      size: 26,
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  const Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'KYRIE',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                        SizedBox(height: 2),
-                        Text(
-                          'KTDF Choir',
-                          style: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 11,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Icon(
-                    Icons.devices_outlined,
-                    color: Colors.white,
-                    size: 22,
-                  ),
-                  const SizedBox(width: 14),
-                  const Icon(
-                    Icons.favorite_border,
-                    color: Colors.white,
-                    size: 22,
-                  ),
-                  const SizedBox(width: 14),
-                  const Icon(
-                    Icons.play_arrow,
-                    color: Colors.white,
-                    size: 28,
-                  ),
-                ],
-              ),
-            ),
-
-            // Navigation Bar
-            BottomNavigationBar(
-              backgroundColor: const Color(0xFF121212),
-              currentIndex: 3,
-              selectedItemColor: const Color(0xFF1DB954),
-              unselectedItemColor: Colors.grey,
-              type: BottomNavigationBarType.fixed,
-              selectedFontSize: 11,
-              unselectedFontSize: 11,
-              items: const [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home_outlined),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.search),
-                  label: 'Search',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.library_music_outlined),
-                  label: 'Library',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.chat_bubble_outline),
-                  label: 'Messages',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.workspace_premium),
-                  label: 'Premium',
-                ),
-              ],
             ),
           ],
         ),

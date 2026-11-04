@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
 import 'search.dart';
+import 'library.dart';
 import 'shared/app_drawer.dart';
 import 'shared/bottom_bar.dart';
 
@@ -19,7 +20,7 @@ class MainShell extends StatelessWidget {
     final pages = [
       SpotifyHome(),
       SearchPage(),
-      Center(child: Text('Library', style: TextStyle(color: Colors.white))),
+      LibraryPage(),
       Center(child: Text('Create', style: TextStyle(color: Colors.white))),
     ];
 

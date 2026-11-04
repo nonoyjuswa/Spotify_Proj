@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import '../add_account.dart';
 import '../premium.dart';
 import '../profile.dart';
+import '../listeningstats.dart';
+import '../settings.dart';
+import '../messages.dart';
 
 const Color _drawerBg = Color(0xFF1F1F1F);
 const Color _cardBg = Color(0xFF2A2A2A);
@@ -123,13 +126,19 @@ class _AppDrawerState extends State<AppDrawer> {
               ),
               onTap: () => _go(const PremiumPage()),
             ),
-            const _MenuRow(icon: Icons.show_chart, title: 'Listening stats'),
+            _MenuRow(
+              icon: Icons.show_chart,
+              title: 'Listening stats',
+              onTap: () => _go(const SpotifyStatsPage()),
+            ),
             const _MenuRow(icon: Icons.history, title: 'Recents'),
             const _MenuRow(
                 icon: Icons.campaign_outlined, title: 'Your Updates'),
-            const _MenuRow(
-                icon: Icons.settings_outlined, title: 'Settings and privacy'),
-
+            _MenuRow(
+              icon: Icons.settings_outlined,
+              title: 'Settings and privacy',
+              onTap: () => _go(const SettingsPage()),
+            ),
             const SizedBox(height: 12),
 
             // ACTIVITY + INVITE FRIENDS
@@ -187,20 +196,20 @@ class _AppDrawerState extends State<AppDrawer> {
             const SizedBox(height: 24),
 
             // MESSAGES HEADER
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8),
-              child: Row(
-                children: [
-                  Text('Messages',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
-                          fontWeight: FontWeight.w800)),
-                  SizedBox(width: 8),
-                  Icon(Icons.chevron_right, color: Colors.white, size: 28),
-                  Spacer(),
-                  Icon(Icons.edit_square, color: Colors.white, size: 26),
-                ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () => _go(const SpotifyMessagesPage()),
+                child: Row(
+                  children: [
+                    Text('Messages', style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w800)),
+                    SizedBox(width: 8),
+                    Icon(Icons.chevron_right, color: Colors.white, size: 28),
+                    Spacer(),
+                    Icon(Icons.edit_square, color: Colors.white, size: 26),
+                  ],
+                ),
               ),
             ),
 
