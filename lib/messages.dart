@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'shared/bottom_bar.dart';
-import 'shared/profile_avatar.dart';
-import 'shared/constants.dart';
 import 'shared/app_drawer.dart';
 
 class MyApp extends StatelessWidget {
